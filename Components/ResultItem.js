@@ -9,6 +9,7 @@ const ResultItem = ({ result, navigation }) => {
       onPress={() => navigation.navigate("ResultDetail", { result })}
     > */}
       <View style={{ width: "90%" }}>
+        <Text style={styles.Id}>Id: {result.Id} </Text>
         <Text style={styles.text}>Property Type: {result.Property} </Text>
         <Text style={styles.text}>Bedrooms: {result.Bedrooms}</Text>
         <Text style={styles.text}>Date and Time: {result.Datetime}</Text>
@@ -42,4 +43,10 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       margin: 15,
   },
+  Id:{
+      fontSize: 40,
+      fontWeight: "bold",
+      margin: 15,
+      color:"green"
+  }
 });

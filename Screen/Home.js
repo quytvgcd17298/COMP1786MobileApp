@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import CustomButton from "../Components/CustomButton";
 
-const db = SQLite.openDatabase("dbName", 1.0);
+const database = SQLite.openDatabase("dbName", 2.0);
 
 const Home = ({navigation}) => {
     const [property, setProperty] = useState("");
@@ -24,16 +24,16 @@ const submit = () => {
         Alert.alert("Warning !!! Please enter inputs !!!");
       } else {
         try {
-          db.transaction((tx) => {
+          database.transaction((tx) => {
             tx.executeSql(
-              "INSERT INTO Result (Property, Bedrooms, Datetime, Monthlyrentprice, Furniture, Note, Reporter) VALUES (?,?,?,?,?,?,?);",
+              "INSERT INTO DATABASE (Property, Bedrooms, Datetime, Monthlyrentprice, Furniture, Note, Reporter) VALUES (?,?,?,?,?,?,?);",
               [property, bedroom, datetime, monthlyprice, furniture, note, reporter],
               (tx, results) => {
                 console.log(results.rowsAffected);
               }
             );
           });
-          Alert.alert("Input Entered")
+          Alert.alert("Input Entered");
           navigation.navigate("Result");
         } catch (error) {
           console.log(error);
@@ -46,9 +46,9 @@ const showResult = () =>{
 };
 
 const createTable = () => {
-    db.transaction((tx) => {
+    database.transaction((tx) => {
       tx.executeSql(
-        "CREATE TABLE IF NOT EXISTS Result(Id INTEGER PRIMARY KEY AUTOINCREMENT, Property TEXT, Bedrooms TEXT, Datetime TEXT, Monthlyrentprice TEXT, Furniture TEXT, Note TEXT, Reporter TEXT);"
+        "CREATE TABLE IF NOT EXISTS DATABASE(Id INTEGER PRIMARY KEY AUTOINCREMENT, Property TEXT, Bedrooms TEXT, Datetime TEXT, Monthlyrentprice TEXT, Furniture TEXT, Note TEXT, Reporter TEXT);"
       );
     });
   };

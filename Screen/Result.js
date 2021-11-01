@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import ResultItem from "../Components/ResultItem";
 
-const db = SQLite.openDatabase("dbName", 1.0);
+const database = SQLite.openDatabase("dbName", 2.0);
 
 const Result = ({navigation}) => {
 
@@ -18,15 +18,15 @@ const Result = ({navigation}) => {
 
 
     useEffect(() => {
-        getResult();
-        getData();
+      getData();
+      getResult();
       }, []);
       
   const getData = () => {
     try {
-      db.transaction((tx) => {
+      database.transaction((tx) => {
         console.log(123);
-        tx.executeSql("SELECT Property, Bedrooms, Datetime, Monthlyrentprice, Furniture, Note, Reporter FROM Result;", [], (tx, result) => {
+        tx.executeSql("SELECT Property, Bedrooms, Datetime, Monthlyrentprice, Furniture, Note, Reporter FROM DATABASE;", [], (tx, result) => {
           console.log(JSON.stringify(result.rows));
           var len = result.rows.length;
           console.log(len);
@@ -55,15 +55,15 @@ const Result = ({navigation}) => {
 
     const getResult = () => {
         try {
-          db.transaction((tx) => {
-            tx.executeSql("SELECT * FROM Result", [], (tx, result) => {
+          database.transaction((tx) => {
+            tx.executeSql("SELECT * FROM DATABASE", [], (tx, result) => {
               var len = result.rows.length;
               console.log(JSON.stringify(result.rows));
               for (let i = 0; i < len; i++) {
                 let row = result.rows.item(i);
                 setData((prevState) => [
                   ...prevState,
-                  { Id: row.Id, Propperty: row.Property, Bedrooms: row.Bedrooms, Datetime: row.Datetime, Monthlyrentprice: row.Monthlyrentprice, Furniture: row.Furniture, Note: row.Note, Reporter: row.Reporter },
+                  {Id: row.Id, Property: row.Property, Bedrooms: row.Bedrooms, Datetime: row.Datetime, Monthlyrentprice: row.Monthlyrentprice, Furniture: row.Furniture, Note: row.Note, Reporter: row.Reporter},
                 ]);
               }
             });
