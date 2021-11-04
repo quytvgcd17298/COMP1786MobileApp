@@ -2,6 +2,9 @@ import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import CustomButton from "../Components/CustomButton";
+import {Picker} from '@react-native-picker/picker';
+
+
 
 const database = SQLite.openDatabase("dbName", 2.0);
 
@@ -57,17 +60,22 @@ const createTable = () => {
     <View style={styles.body}>
       <Text style={styles.text}>Home</Text>
       <TextInput
-        style={styles.input}
         placeholder="Property Type"
+        style={styles.input}
         onChangeText={(value) => setProperty(value)}
         value={property}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Bedrooms"
-        onChangeText={(value) => setBedroom(value)}
-        value={bedroom}
-      />
+    <Picker
+      style={styles.input}
+      selectedValue={bedroom}
+      onValueChange={(itemValue, itemIndex) => setBedroom(itemValue)}>
+      <Picker.Item label="Bedrooms" value="Empty" />
+      <Picker.Item label="Single" value="Single" />
+      <Picker.Item label="Double" value="Double" />
+      <Picker.Item label="King room" value="King room" />
+      <Picker.Item label="Apartment" value="Apartment" />
+      <Picker.Item label="President" value="President" />
+    </Picker>
        <TextInput
         style={styles.input}
         placeholder="Date and time"
@@ -80,12 +88,16 @@ const createTable = () => {
         onChangeText={(value) => setMonthlyprice(value)}
         value={monthlyprice}
       />
-       <TextInput
-        style={styles.input}
-        placeholder="Furniture"
-        onChangeText={(value) => setFurniture(value)}
-        value={furniture}
-      />
+      <Picker
+                selectedValue={furniture}
+                style={styles.input}
+                onValueChange={(itemValue, itemIndex) => setFurniture(itemValue)}>
+                <Picker.Item label="Furniture types" value="Empty" />
+                <Picker.Item label="Classic" value="Classic" />
+                <Picker.Item label="Modern" value="Modern" />
+                <Picker.Item label="Neoclassical" value="Neoclassical" />
+                <Picker.Item label="Indochina Style" value="Indochina Style" />
+            </Picker>
       <TextInput
         style={styles.input}
         placeholder="Notes"

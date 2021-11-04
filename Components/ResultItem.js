@@ -1,14 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const ResultItem = ({ result, navigation }) => {
+const ResultItem = ({ result, navigation}) => {
+const detailResult = () => {
+  navigation.navigate("Detail", { result })
+  }
   return (
     <View style = {styles.container}>
-    {/* <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate("ResultDetail", { result })}
-    > */}
-      <View style={{ width: "90%" }}>
+      <View>
         <Text style={styles.Id}>Id: {result.Id} </Text>
         <Text style={styles.text}>Property Type: {result.Property} </Text>
         <Text style={styles.text}>Bedrooms: {result.Bedrooms}</Text>
@@ -18,7 +17,20 @@ const ResultItem = ({ result, navigation }) => {
         <Text style={styles.text}>Note: {result.Note}</Text>
         <Text style={styles.text}>Reporter Name: {result.Reporter}</Text>
       </View>
-    {/* </TouchableOpacity> */}
+    <TouchableOpacity
+    onPress = {detailResult}
+    style = {styles.touch}
+    >
+      <Text
+      style = {{
+        alignItems:"center",
+        justifyContent:"center",
+        paddingHorizontal:20,
+        fontSize:12,
+        textTransform:"uppercase",
+        color:"white"
+      }}>Detail</Text>
+    </TouchableOpacity>
     </View>
   );
 };
@@ -48,5 +60,19 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       margin: 15,
       color:"green"
+  },
+  touch:
+  {
+    paddingLeft: 2,
+    width: 90,
+    height: 50,
+    borderWidth: 3,
+    backgroundColor: "blue",
+    fontSize: 250,
+    alignItems: "flex-end",
+    justifyContent: "center",
+    borderRadius: 5,
+    marginTop:20,
+    marginHorizontal:5,
   }
 });

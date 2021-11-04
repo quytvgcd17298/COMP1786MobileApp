@@ -12,6 +12,7 @@ const CustomButton = (props) => {
         </View>
     )
 };
+
 const styles = StyleSheet.create(
     {
     Text:
