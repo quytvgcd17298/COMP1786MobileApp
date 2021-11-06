@@ -7,22 +7,22 @@ const database = SQLite.openDatabase("dbName", 2.0);
 
 const Result = ({navigation}) => {
 
-    const [property, setProperty] = useState("");
+/*  const [property, setProperty] = useState("");
     const [bedroom, setBedroom] = useState("");
     const [datetime, setDatetime] = useState("");
     const [monthlyprice, setMonthlyprice] = useState("");
     const [furniture, setFurniture] = useState("");
     const [note, setNote] = useState("");
-    const [reporter, setReporter] = useState("");
+    const [reporter, setReporter] = useState(""); */
     const [data, setData] = useState([]);
 
 
     useEffect(() => {
-      getData();
+/*    getData(); */      
       getResult();
       }, []);
       
-  const getData = () => {
+ /*  const getData = () => {
     try {
       database.transaction((tx) => {
         console.log(123);
@@ -51,7 +51,7 @@ const Result = ({navigation}) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
     const getResult = () => {
         try {

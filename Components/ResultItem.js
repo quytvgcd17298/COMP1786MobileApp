@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     width: 90,
     height: 50,
     borderWidth: 3,
-    backgroundColor: "blue",
+    backgroundColor: "green",
     fontSize: 250,
     alignItems: "flex-end",
     justifyContent: "center",

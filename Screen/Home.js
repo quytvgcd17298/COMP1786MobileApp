@@ -47,6 +47,10 @@ const submit = () => {
 const showResult = () =>{
     navigation.navigate("Result");
 };
+const search = () =>{
+  navigation.navigate("Search");
+};
+
 
 const createTable = () => {
     database.transaction((tx) => {
@@ -112,7 +116,7 @@ const createTable = () => {
       />
       <View style = {{flexDirection:"row"}}>
       <CustomButton title="Show All" handlePress ={showResult} />
-      <CustomButton title="Search" />
+      <CustomButton title="Search"  handlePress = {search}/>
       <CustomButton title="Submit" handlePress={submit}/>
       </View>
     </View>
