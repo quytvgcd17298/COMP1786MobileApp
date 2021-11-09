@@ -69,17 +69,20 @@ const createTable = () => {
         onChangeText={(value) => setProperty(value)}
         value={property}
       />
-    <Picker
-      style={styles.input}
-      selectedValue={bedroom}
-      onValueChange={(itemValue, itemIndex) => setBedroom(itemValue)}>
-      <Picker.Item label="Bedrooms" value="Empty" />
-      <Picker.Item label="Single" value="Single" />
-      <Picker.Item label="Double" value="Double" />
-      <Picker.Item label="King room" value="King room" />
-      <Picker.Item label="Apartment" value="Apartment" />
-      <Picker.Item label="President" value="President" />
-    </Picker>
+      <View style={styles.picker}>
+        <Picker
+          selectedValue={bedroom}
+          onValueChange={(itemValue, itemIndex) => setBedroom(itemValue)}>
+          <Picker.Item label="Bedrooms" value="Empty" />
+          <Picker.Item label="Single" value="Single" />
+          <Picker.Item label="Double" value="Double" />
+          <Picker.Item label="King room" value="King room" />
+          <Picker.Item label="Apartment" value="Apartment" />
+          <Picker.Item label="President" value="President" />
+        </Picker>
+      </View>
+      
+
        <TextInput
         style={styles.input}
         placeholder="Date and time"
@@ -92,23 +95,25 @@ const createTable = () => {
         onChangeText={(value) => setMonthlyprice(value)}
         value={monthlyprice}
       />
-      <Picker
-                selectedValue={furniture}
-                style={styles.input}
-                onValueChange={(itemValue, itemIndex) => setFurniture(itemValue)}>
-                <Picker.Item label="Furniture types" value="Empty" />
-                <Picker.Item label="Classic" value="Classic" />
-                <Picker.Item label="Modern" value="Modern" />
-                <Picker.Item label="Neoclassical" value="Neoclassical" />
-                <Picker.Item label="Indochina Style" value="Indochina Style" />
-            </Picker>
+      <View style={styles.picker}>
+        <Picker
+          selectedValue={furniture}
+          onValueChange={(itemValue, itemIndex) => setFurniture(itemValue)}>
+          <Picker.Item label="Furniture types" value="Empty" />
+          <Picker.Item label="Classic" value="Classic" />
+          <Picker.Item label="Modern" value="Modern" />
+          <Picker.Item label="Neoclassical" value="Neoclassical" />
+          <Picker.Item label="Indochina Style" value="Indochina Style" />
+        </Picker>
+      </View>
+
       <TextInput
         style={styles.input}
         placeholder="Notes"
         onChangeText={(value) => setNote(value)}
         value={note}
       />
-       <TextInput
+      <TextInput
         style={styles.input}
         placeholder="Name of the reporter"
         onChangeText={(value) => setReporter(value)}
@@ -139,11 +144,20 @@ const styles = StyleSheet.create({
       height: 50,
       width: 300,
       borderRadius: 5,
-      textAlign: "center",
+      textAlign:"left",
       fontSize: 20,
       marginBottom: 10,
       marginTop: 10,
     },
+    picker: {
+      height:50,
+      width: 300,
+      borderWidth: 1,
+      marginBottom: 10,
+      marginTop: 10,
+      borderColor: "#000000",
+      borderRadius: 5,
+    }
   });
 
 export default Home
