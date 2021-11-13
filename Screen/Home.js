@@ -22,10 +22,15 @@ const Home = ({navigation}) => {
       }, []);
 
 const submit = () => {
-    if (property.length === 0 || !bedroom || datetime.length === 0 || monthlyprice.length === 0 
-        || !furniture || reporter.length === 0) {
-        Alert.alert("Warning !!! Please enter inputs !!!");
-      } else {
+    if (property.length === 0) {
+        Alert.alert("Warning !!! Please enter property");
+      }
+      else if( bedroom.length === 0){Alert.alert("Warning !!! Please select bedroom")}
+      else if( datetime.length === 0){Alert.alert("Warning !!! Please enter datetime")}
+      else if( monthlyprice.length === 0){Alert.alert("Warning !!! Please enter monthly price")}
+      else if( furniture.length === 0){Alert.alert("Warning !!! Please select furniture type")}
+      else if( reporter.length === 0){Alert.alert("Warning !!! Please enter reporter name")}
+      else {
         try {
           database.transaction((tx) => {
             tx.executeSql(
@@ -51,7 +56,6 @@ const search = () =>{
   navigation.navigate("Search");
 };
 
-
 const createTable = () => {
     database.transaction((tx) => {
       tx.executeSql(
@@ -60,7 +64,7 @@ const createTable = () => {
     });
   };
 
-    return (
+    return (   
     <View style={styles.body}>
       <Text style={styles.text}>Home</Text>
       <TextInput
@@ -73,7 +77,7 @@ const createTable = () => {
         <Picker
           selectedValue={bedroom}
           onValueChange={(itemValue, itemIndex) => setBedroom(itemValue)}>
-          <Picker.Item label="Bedrooms" value="Empty" />
+          <Picker.Item label="Bedrooms" value="" />
           <Picker.Item label="Single" value="Single" />
           <Picker.Item label="Double" value="Double" />
           <Picker.Item label="King room" value="King room" />
@@ -99,7 +103,7 @@ const createTable = () => {
         <Picker
           selectedValue={furniture}
           onValueChange={(itemValue, itemIndex) => setFurniture(itemValue)}>
-          <Picker.Item label="Furniture types" value="Empty" />
+          <Picker.Item label="Furniture types" value="" />
           <Picker.Item label="Classic" value="Classic" />
           <Picker.Item label="Modern" value="Modern" />
           <Picker.Item label="Neoclassical" value="Neoclassical" />
