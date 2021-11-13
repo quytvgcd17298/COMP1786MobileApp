@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
 
 const submit = () => {
     if (property.length === 0 || !bedroom || datetime.length === 0 || monthlyprice.length === 0 
-        || !furniture|| note.length === 0|| reporter.length === 0) {
+        || !furniture || reporter.length === 0) {
         Alert.alert("Warning !!! Please enter inputs !!!");
       } else {
         try {
