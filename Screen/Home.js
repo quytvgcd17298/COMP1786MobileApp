@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import CustomButton from "../Components/CustomButton";
 import {Picker} from '@react-native-picker/picker';
+import DatePicker from 'react-native-datepicker';
+import CurrencyInput from 'react-native-currency-input';
 
 
 
@@ -86,19 +88,58 @@ const createTable = () => {
         </Picker>
       </View>
       
-
-       <TextInput
-        style={styles.input}
-        placeholder="Date and time"
-        onChangeText={(value) => setDatetime(value)}
-        value={datetime}
-      />
-       <TextInput
+      <View>
+        <DatePicker
+          style={styles.datePickerStyle}
+          date={datetime}
+          mode="date"
+          placeholder="Date and Time"
+          format="DD-MM-YYYY"
+          minDate="01-01-2016"
+          maxDate="01-01-2025"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateInput: {
+              marginLeft: 36,
+              fontSize: 20,
+            },
+            dateIcon: {
+              position: 'relative',
+              left: 0,
+              top: 4,
+              marginLeft: 0,
+            },
+          }}
+          onDateChange={(date) => {
+            setDatetime(date);
+          }}
+        />
+        </View>
+       {/* <TextInput
         style={styles.input}
         placeholder="Monthly rent price"
         onChangeText={(value) => setMonthlyprice(value)}
         value={monthlyprice}
-      />
+      /> */}
+      <View
+      style = {styles.input}>
+      <CurrencyInput
+      style = {{
+      textAlign:"center",
+      fontSize: 20,
+      marginBottom: 10,
+      marginTop: 10,}}
+      value={monthlyprice}
+      onChangeValue={setMonthlyprice}
+      unit="$"
+      delimiter=","
+      separator="."
+      precision={2}
+      placeholder="Monthly rent price"
+      onChangeText={(formattedValue) => setMonthlyprice(formattedValue)}/>
+
+      </View>
       <View style={styles.picker}>
         <Picker
           selectedValue={furniture}
@@ -147,8 +188,8 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       height: 50,
       width: 300,
-      borderRadius: 5,
-      textAlign:"left",
+      borderRadius: 2,
+      textAlign:"center",
       fontSize: 20,
       marginBottom: 10,
       marginTop: 10,
@@ -160,8 +201,15 @@ const styles = StyleSheet.create({
       marginBottom: 10,
       marginTop: 10,
       borderColor: "#000000",
-      borderRadius: 5,
-    }
+      borderRadius: 2,
+    },
+    datePickerStyle: {
+      alignItems: "center",
+      justifyContent:"center",
+      height:60,
+      width: 370,
+      fontSize:20,
+    },
   });
 
 export default Home

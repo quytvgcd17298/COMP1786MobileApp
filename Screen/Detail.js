@@ -43,7 +43,7 @@ const Detail  = ({ route, navigation }) => {
       <Text style = {styles.text}>Property Type: {result.Property}</Text>
       <Text style = {styles.text}>Bedroom Type: {result.Bedrooms}</Text>
       <Text style = {styles.text}>Date And Time: {result.Datetime}</Text>
-      <Text style = {styles.text}>Monthly Rent Price: {result.Monthlyrentprice}</Text>
+      <Text style = {styles.text}>Monthly Rent Price: {result.Monthlyrentprice}$</Text>
       <Text style = {styles.text}>Furniture Type: {result.Furniture}</Text>
       <Text style = {styles.text}>Note: {result.Note}</Text>
       <Text style = {styles.text}>Reporter Name: {result.Reporter}</Text>

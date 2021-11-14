@@ -12,7 +12,7 @@ const detailResult = () => {
         <Text style={styles.text}>Property Type: {result.Property} </Text>
         <Text style={styles.text}>Bedrooms: {result.Bedrooms}</Text>
         <Text style={styles.text}>Date and Time: {result.Datetime}</Text>
-        <Text style={styles.text}>Monthly rent price: {result.Monthlyrentprice}</Text>
+        <Text style={styles.text}>Monthly rent price: {result.Monthlyrentprice}$</Text>
         <Text style={styles.text}>Furniture Type: {result.Furniture}</Text>
         <Text style={styles.text}>Note: {result.Note}</Text>
         <Text style={styles.text}>Reporter Name: {result.Reporter}</Text>
