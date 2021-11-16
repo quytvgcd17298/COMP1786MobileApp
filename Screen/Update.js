@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View, ScrollView } from "react-native";
 import CustomButton from "../Components/CustomButton";
 import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-datepicker';
@@ -8,7 +8,7 @@ import CurrencyInput from 'react-native-currency-input';
 
 const db = SQLite.openDatabase("dbName", 2.0);
 
-const Update  = ({ route, navigation }) => {
+const Update  = ({ navigation }) => {
     const [property, setProperty] = useState("");
     const [bedroom, setBedroom] = useState("");
     const [datetime, setDatetime] = useState("");
@@ -20,6 +20,7 @@ const Update  = ({ route, navigation }) => {
 
 
   const updateHandle = () => {
+    const {id} =this.state;
     if (property.length === 0) {
         Alert.alert("Warning !!! Please enter property");
       }
@@ -32,8 +33,8 @@ const Update  = ({ route, navigation }) => {
         try {
           db.transaction((tx) => {
             tx.executeSql(
-                'UPDATE DATABASE SET Property=?, Bedrooms=?, Datetime=?, Monthlyrentprice=?, Furniture=?, Note=?, Reporter=? WHERE Id=8',
-                [property, bedroom, datetime, monthlyprice, furniture, note, reporter],
+                'UPDATE DATABASE SET Property=?, Bedrooms=?, Datetime=?, Monthlyrentprice=?, Furniture=?, Note=?, Reporter=? WHERE Id=?',
+                [property, bedroom, datetime, monthlyprice, furniture, note, reporter, id],
               (tx, results) => {
                 console.log(results.rowsAffected);
               }
@@ -47,7 +48,8 @@ const Update  = ({ route, navigation }) => {
       }
 };
 
-  return (         
+  return (    
+    <ScrollView>     
     <View style={styles.body}>
     <Text style={styles.text}>Update Form</Text>
     <TextInput
@@ -135,10 +137,13 @@ const Update  = ({ route, navigation }) => {
     </View>
 
     <TextInput
-      style={styles.input}
-      placeholder="Notes"
-      onChangeText={(value) => setNote(value)}
-      value={note}
+        style={styles.textArea}
+        underlineColorAndroid="transparent"
+        placeholder="Notes"
+        numberOfLines={10}
+        multiline={true}
+        onChangeText={(value) => setNote(value)}
+        value={note}
     />
     <TextInput
       style={styles.input}
@@ -150,6 +155,7 @@ const Update  = ({ route, navigation }) => {
     <CustomButton title="UPDATE" handlePress ={updateHandle} />
     </View>
   </View>
+  </ScrollView>
   )
 };
 
@@ -190,5 +196,13 @@ const styles = StyleSheet.create({
         width: 370,
         fontSize:20,
       },
+      textArea: {
+        borderWidth: 1,
+        height: 100,
+        width: 300,
+        fontSize:20,
+        justifyContent: "flex-start",
+        textAlignVertical: 'top'
+      }
 });
 export default Update;

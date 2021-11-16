@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View, ScrollView, TouchableOpacity } from "react-native";
 import CustomButton from "../Components/CustomButton";
 import {Picker} from '@react-native-picker/picker';
 import DatePicker from 'react-native-datepicker';
@@ -57,6 +57,9 @@ const showResult = () =>{
 const search = () =>{
   navigation.navigate("Search");
 };
+const confirmDialog = () =>{
+  navigation.navigate("BellVibrate");
+};
 
 const createTable = () => {
     database.transaction((tx) => {
@@ -67,6 +70,7 @@ const createTable = () => {
   };
 
     return (   
+      <ScrollView>
     <View style={styles.body}>
       <Text style={styles.text}>Home</Text>
       <TextInput
@@ -154,8 +158,11 @@ const createTable = () => {
       </View>
 
       <TextInput
-        style={styles.input}
+        style={styles.textArea}
+        underlineColorAndroid="transparent"
         placeholder="Notes"
+        numberOfLines={10}
+        multiline={true}
         onChangeText={(value) => setNote(value)}
         value={note}
       />
@@ -170,7 +177,22 @@ const createTable = () => {
       <CustomButton title="Search"  handlePress = {search}/>
       <CustomButton title="Submit" handlePress={submit}/>
       </View>
+      <TouchableOpacity
+      onPress = {confirmDialog}
+      style = {styles.touch}
+    >
+      <Text
+      style = {{
+        alignItems:"center",
+        justifyContent:"center",
+        paddingHorizontal:20,
+        fontSize:20,
+        textTransform:"uppercase",
+        color:"black"
+      }}>Confirmation Dialog Box</Text>
+      </TouchableOpacity>
     </View>
+    </ScrollView>
     )
 }
 
@@ -178,7 +200,7 @@ const styles = StyleSheet.create({
     body: {
       flex: 1,
       alignItems: "center",
-      justifyContent: "flex-start",
+      justifyContent: "center",
     },
     text: {
       fontSize: 40,
@@ -211,6 +233,28 @@ const styles = StyleSheet.create({
       width: 370,
       fontSize:20,
     },
+    textArea: {
+      borderWidth: 1,
+      height: 100,
+      width: 300,
+      fontSize: 20,
+      justifyContent: "flex-start",
+      textAlignVertical: 'top'
+    },
+    touch:
+  {
+    paddingLeft: 2,
+    width: 370,
+    height: 50,
+    borderWidth: 3,
+    backgroundColor: "yellow",
+    fontSize: 250,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 5,
+    marginTop:20,
+    marginHorizontal:5,
+  }
   });
 
 export default Home
