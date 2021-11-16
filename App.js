@@ -8,7 +8,7 @@ import Result from './Screen/Result';
 import Detail from './Screen/Detail';
 import Search from './Screen/Search';
 import Update from './Screen/Update';
-import BellVibrate from './Screen/BellVibrate';
+import ConfirmDialog from './Screen/ConfirmDialog';
 
 
 
@@ -46,8 +46,8 @@ export default function App() {
       component={Update} 
       />
       <Stack.Screen 
-      name="Confirmation Dialog Box" 
-      component={BellVibrate} 
+      name="ConfirmDialog" 
+      component={ConfirmDialog} 
       />
     </Stack.Navigator>
   </NavigationContainer>

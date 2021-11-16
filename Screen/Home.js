@@ -58,7 +58,7 @@ const search = () =>{
   navigation.navigate("Search");
 };
 const confirmDialog = () =>{
-  navigation.navigate("BellVibrate");
+  navigation.navigate("ConfirmDialog");
 };
 
 const createTable = () => {
