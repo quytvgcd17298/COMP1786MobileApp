@@ -103,6 +103,7 @@ const createTable = () => {
             dateInput: {
               marginLeft: 36,
               fontSize: 20,
+              textAlign:"left"
             },
             dateIcon: {
               position: 'relative',
@@ -126,7 +127,7 @@ const createTable = () => {
       style = {styles.input}>
       <CurrencyInput
       style = {{
-      textAlign:"center",
+      textAlign:"left",
       fontSize: 20,
       marginBottom: 10,
       marginTop: 10,}}
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
       height: 50,
       width: 300,
       borderRadius: 2,
-      textAlign:"center",
+      textAlign:"left",
       fontSize: 20,
       marginBottom: 10,
       marginTop: 10,

@@ -47,7 +47,11 @@ const Detail  = ({ route, navigation }) => {
       <Text style = {styles.text}>Furniture Type: {result.Furniture}</Text>
       <Text style = {styles.text}>Note: {result.Note}</Text>
       <Text style = {styles.text}>Reporter Name: {result.Reporter}</Text>
+      
+      <View>
       <CustomButton title="DELETE" handlePress = {deleteItem}/>
+      </View>
+      
     </View>
   );
 };

@@ -7,6 +7,7 @@ import Home from './Screen/Home';
 import Result from './Screen/Result';
 import Detail from './Screen/Detail';
 import Search from './Screen/Search';
+import Update from './Screen/Update';
 
 
 
@@ -38,6 +39,10 @@ export default function App() {
       <Stack.Screen 
       name="Search" 
       component={Search} 
+      />
+      <Stack.Screen 
+      name="Update" 
+      component={Update} 
       />
     </Stack.Navigator>
   </NavigationContainer>
