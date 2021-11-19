@@ -8,7 +8,8 @@ import CurrencyInput from 'react-native-currency-input';
 
 const db = SQLite.openDatabase("dbName", 2.0);
 
-const Update  = ({ navigation }) => {
+const Update  = ({ route, navigation }) => {
+    const [updateId, setUpdateId] = useState("");
     const [property, setProperty] = useState("");
     const [bedroom, setBedroom] = useState("");
     const [datetime, setDatetime] = useState("");
@@ -18,9 +19,18 @@ const Update  = ({ navigation }) => {
     const [reporter, setReporter] = useState("");
  //const { result } = route.params;
 
+ useEffect(() => {
+  setUpdateId(route.params.Id);
+  setProperty(route.params.Property);
+  setBedroom(route.params.Bedrooms);
+  setDatetime(route.params.Datetime);
+  setMonthlyprice(route.params.Monthlyrentprice);
+  setFurniture(route.params.Furniture);
+  setNote(route.params.Note);
+  setReporter(route.params.Reporter);
+}, []);
 
   const updateHandle = () => {
-    const {id} =this.state;
     if (property.length === 0) {
         Alert.alert("Warning !!! Please enter property");
       }
@@ -33,10 +43,10 @@ const Update  = ({ navigation }) => {
         try {
           db.transaction((tx) => {
             tx.executeSql(
-                'UPDATE DATABASE SET Property=?, Bedrooms=?, Datetime=?, Monthlyrentprice=?, Furniture=?, Note=?, Reporter=? WHERE Id=?',
-                [property, bedroom, datetime, monthlyprice, furniture, note, reporter, id],
-              (tx, results) => {
-                console.log(results.rowsAffected);
+                'UPDATE DATABASE SET Property = ?, Bedrooms = ?, Datetime = ?, Monthlyrentprice = ?, Furniture = ?, Note = ?, Reporter = ? WHERE Id = ?',
+                [property, bedroom, datetime, monthlyprice, furniture, note, reporter, updateId],
+              (tx, result) => {
+                console.log('Results',result.rowsAffected);
               }
             );
           });
